@@ -4,7 +4,7 @@ namespace MusicFestivalTracker.Repositories
 {
     public interface IUserRepo
     {
-        User GetUserById(string id);
+        User GetUserById(int id);
         void CreateUser(User user);
     }
 }

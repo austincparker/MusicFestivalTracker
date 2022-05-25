@@ -39,7 +39,7 @@ namespace MusicFestivalTracker.Repositories
                         {
                             User user = new User
                             {
-                                Id = reader.GetString(reader.GetOrdinal("id")),
+                                Id = reader.GetInt32(reader.GetOrdinal("id")),
                                 FullName = reader.GetString(reader.GetOrdinal("fullName")),
                                 FirebaseKey = reader.GetString(reader.GetOrdinal("firebaseKey")),
                             };
