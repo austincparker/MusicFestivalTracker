@@ -1,6 +1,10 @@
-﻿namespace MusicFestivalTracker.Repositories
+﻿using MusicFestivalTracker.Models;
+
+namespace MusicFestivalTracker.Repositories
 {
-    public class IUserRepo
+    public interface IUserRepo
     {
+        User GetUserById(string id);
+        void CreateUser(User user);
     }
 }
