@@ -46,7 +46,7 @@ namespace MusicFestivalTracker.Repositories
                             Liked = reader.GetString(reader.GetOrdinal("Liked")),
                             Lacked = reader.GetString(reader.GetOrdinal("Lacked")),
                             Camping = reader.GetBoolean(reader.GetBoolean("Camping")),
-                            UserId = reader.GetString(reader.GetOrdinal("UserId")),
+                            UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
                             ImageUrl = reader.GetString(reader.GetOrdinal("ImageUrl")),
                         };
                         festivals.Add(festival);

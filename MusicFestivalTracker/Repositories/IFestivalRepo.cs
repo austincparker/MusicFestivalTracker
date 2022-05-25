@@ -2,7 +2,7 @@
 
 namespace MusicFestivalTracker.Repositories
 {
-    public class IFestivalRepo
+    public interface IFestivalRepo
     {
         List<Festival> GetFestivalsByUid(int id);
         Festival GetFestivalByid(int id);
