@@ -45,7 +45,7 @@ namespace MusicFestivalTracker.Repositories
                             Date = reader.GetString(reader.GetOrdinal("Date")),
                             Liked = reader.GetString(reader.GetOrdinal("Liked")),
                             Lacked = reader.GetString(reader.GetOrdinal("Lacked")),
-                            Camping = reader.GetBoolean(reader.GetBoolean("Camping")),
+                            Camping = reader.GetBoolean(reader.GetOrdinal("Camping")),
                             UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
                             ImageUrl = reader.GetString(reader.GetOrdinal("ImageUrl")),
                         };
@@ -85,7 +85,7 @@ namespace MusicFestivalTracker.Repositories
                             Date = reader.GetString(reader.GetOrdinal("Date")),
                             Liked = reader.GetString(reader.GetOrdinal("Liked")),
                             Lacked = reader.GetString(reader.GetOrdinal("Lacked")),
-                            Camping = reader.GetBoolean(reader.GetBoolean("Camping")),
+                            Camping = reader.GetBoolean(reader.GetOrdinal("Camping")),
                             UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
                             ImageUrl = reader.GetString(reader.GetOrdinal("ImageUrl")),
                         };
@@ -134,8 +134,9 @@ namespace MusicFestivalTracker.Repositories
             using(SqlConnection conn = Connection)
             {
                 conn.Open();
-                
-                using (SqlCommand cmd = conn.CreateCommand(){
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
                     cmd.CommandText = @"
                                       DELETE FROM Festival
                                       WHERE Id = @id
