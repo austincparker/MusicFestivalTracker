@@ -20,7 +20,7 @@ namespace MusicFestivalTracker.Repositories
                 }
             }
 
-            public User GetUserById(string id)
+            public User GetUserById(int id)
             {
                 using (SqlConnection conn = Connection)
                 {

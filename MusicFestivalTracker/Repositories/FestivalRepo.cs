@@ -20,7 +20,7 @@ namespace MusicFestivalTracker.Repositories
             }
         }
 
-        public List<Festival> GetFestivalsByUid(string userId)
+        public List<Festival> GetFestivalsByUid(int userId)
         {
             using (SqlConnection conn = Connection)
             {
@@ -58,7 +58,7 @@ namespace MusicFestivalTracker.Repositories
             }
         }
 
-        public Festival getFestivalById(int id)
+        public Festival GetFestivalById(int id)
         {
             using (SqlConnection conn = Connection)
             {
