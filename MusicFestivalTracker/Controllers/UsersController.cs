@@ -1,83 +1,47 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MusicFestivalTracker.Models;
+using MusicFestivalTracker.Repositories;
 
 namespace MusicFestivalTracker.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class UsersController : Controller
     {
-        // GET: UsersController
-        public ActionResult Index()
+        private readonly IUserRepo _userRepo;
+
+        public UsersController(IUserRepo userRepository)
         {
-            return View();
+            _userRepo = userRepository;
         }
 
-        // GET: UsersController/Details/5
-        public ActionResult Details(int id)
+        [HttpGet("{id}")]
+        public IActionResult GetUserById(int id)
         {
-            return View();
+            User user = _userRepo.GetUserById(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
         }
 
-        // GET: UsersController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: UsersController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult CreateUser(User user)
         {
-            try
+            if (user == null)
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+                return NotFound();
 
-        // GET: UsersController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+            }
+            else
+            {
+                _userRepo.CreateUser(user);
+                return Ok(user);
+            }
 
-        // POST: UsersController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: UsersController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: UsersController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
