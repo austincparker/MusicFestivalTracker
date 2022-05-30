@@ -1,83 +1,84 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MusicFestivalTracker.Models;
+using MusicFestivalTracker.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MusicFestivalTracker.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class FestivalsController : Controller
     {
+
+        private readonly IFestivalRepo _festivalRepo;
+
+        public FestivalsController(IFestivalRepo festivalRepo)
+        {
+            _festivalRepo = festivalRepo;
+        }
+
+        [HttpGet("{uid}")]
         // GET: FestivalsController
-        public ActionResult Index()
+        public ActionResult GetFestivalsByUid(int uid)
         {
-            return View();
+            var match = _festivalRepo.GetFestivalsByUid(uid);
+
+            if (match == null)
+            {
+                return NotFound();
+            }
+            return Ok(match);
         }
 
-        // GET: FestivalsController/Details/5
-        public ActionResult Details(int id)
+        [HttpGet("{id}")]
+
+        public ActionResult GetFestivalById(int id)
         {
-            return View();
+            var match = _festivalRepo.GetFestivalById(id);
+
+            if (match == null)
+            {
+                return NotFound();
+            }
+            return Ok(match);
         }
 
-        // GET: FestivalsController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: FestivalsController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult CreateFestival(Festival festival)
         {
-            try
+            if (festival == null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            catch
+            else
             {
-                return View();
+                _festivalRepo.CreateFestival(festival);
+                return Ok(festival);
             }
         }
 
-        // GET: FestivalsController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpPut("{id}")]
+        public IActionResult UpdateOrder(Festival festival)
         {
-            return View();
+            int id = festival.Id;
+            var match = _festivalRepo.GetFestivalById(id);
+
+            if (match == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _festivalRepo.UpdateFestival(festival);
+                return Ok(festival);
+            }
+
         }
 
-        // POST: FestivalsController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        [HttpDelete("{id}")]
+        public void Delete(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: FestivalsController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: FestivalsController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _festivalRepo.DeleteFestival(id);
         }
     }
 }
