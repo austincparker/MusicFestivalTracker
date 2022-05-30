@@ -60,7 +60,8 @@ namespace MusicFestivalTracker.Repositories
 
         public Festival getFestivalById(int id)
         {
-            using (SqlConnection conn = Connection){
+            using (SqlConnection conn = Connection)
+            {
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
@@ -112,7 +113,6 @@ namespace MusicFestivalTracker.Repositories
                                       VALUES (@id, @name, @headliner, @location, @date, @liked, @lacked, @camping, @userId, @imageUrl)
                                       ";
 
-                    cmd.Parameters.AddWithValue("@id", festival.Id);
                     cmd.Parameters.AddWithValue("@name", festival.Name);
                     cmd.Parameters.AddWithValue("@headliner", festival.Headliner);
                     cmd.Parameters.AddWithValue("@location", festival.Location);
@@ -126,6 +126,61 @@ namespace MusicFestivalTracker.Repositories
 
                     festival.Id = id;
                 }
+            }
+        }
+
+        public void DeleteFestival(int id)
+        {
+            using(SqlConnection conn = Connection)
+            {
+                conn.Open();
+                
+                using (SqlCommand cmd = conn.CreateCommand(){
+                    cmd.CommandText = @"
+                                      DELETE FROM Festival
+                                      WHERE Id = @id
+                                      ";
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void UpdateFestival(Festival festival)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                      UPDATE Festival
+                                      SET
+                                          Name = @name,
+                                          Headliner = @headliner,
+                                          Location = @location,
+                                          Date = @date,
+                                          Liked = @liked,
+                                          Lacked = @lacked,
+                                          Camping = @camping,
+                                          UserId = @userId,
+                                          ImageUrl = @imageUrl,
+                                      WHERE Id = @id
+                                      ";
+
+                    cmd.Parameters.AddWithValue("@name", festival.Name);
+                    cmd.Parameters.AddWithValue("@headliner", festival.Headliner);
+                    cmd.Parameters.AddWithValue("@location", festival.Location);
+                    cmd.Parameters.AddWithValue("@date", festival.Date);
+                    cmd.Parameters.AddWithValue("@liked", festival.Liked);
+                    cmd.Parameters.AddWithValue("@lacked", festival.Lacked);
+                    cmd.Parameters.AddWithValue("@camping", festival.Camping);
+                    cmd.Parameters.AddWithValue("@imageUrl", festival.ImageUrl);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
