@@ -5,6 +5,7 @@ import "firebase/compat/auth";
 import "./App.css";
 import SignInView from "./views/SignInView";
 import Navbar from "./components/Navbar";
+import Routing from "./routes";
 
 
 
@@ -41,6 +42,7 @@ function App() {
       {user ? (
         <>
           <Navbar />
+          <Routing uid={user.id} />
           {/* <Routing uid={user.id} /> */}
         </>
       ) : (
