@@ -28,7 +28,8 @@ namespace MusicFestivalTracker.Repositories
                     using (SqlCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = @"
-                                            SELECT * FROM [User
+                                            SELECT Id, FullName, FirebaseKey
+                                            FROM [User]     
                                             WHERE Id = @id
                                             ";
                         cmd.Parameters.AddWithValue("id", id);

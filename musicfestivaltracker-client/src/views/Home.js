@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { signOutUser } from '../api/auth/auth';
 import getFestivalsByUid from '../api/festivalData';
 
 function Home({ uid }) {
@@ -15,7 +16,13 @@ function Home({ uid }) {
       <div>Home</div>
       <p>{uid}</p>
       {festivals.map((fest) => (
+        <>
         <p key={fest.id}>{fest.name}</p>
+        <button
+        onClick={signOutUser}
+        type='button'
+        >Sign Out</button>
+        </>
       ))}
       
       </>
