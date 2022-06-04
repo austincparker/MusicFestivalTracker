@@ -5,7 +5,7 @@ const baseURL = "https://localhost:7245/api";
 const createUser = (newUser) =>
   new Promise((resolve, reject) => {
     axios
-      .post(`${baseURL}/user`, newUser)
+      .post(`${baseURL}/users`, newUser)
       .then((response) => {
         resolve(response.data);
       })

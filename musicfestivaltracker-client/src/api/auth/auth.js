@@ -12,16 +12,9 @@ const signInUser = () => {
       } = result;
       if (isNewUser) {
         firebase.auth().onAuthStateChanged((authed) => {
-          const userName = authed.displayName;
-          const values = userName.split(" ");
-          const fName = values[0];
-          const lName = values[1];
           createUser({
-            id: authed.uid,
-            firstName: fName,
-            lastName: lName,
-            email: authed.email,
-            isAdmin: false,
+            fullName: authed.displayName,
+            firebaseKey: authed.uid
           });
         });
       }
