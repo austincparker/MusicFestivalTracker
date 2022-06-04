@@ -1,8 +1,19 @@
+using MusicFestivalTracker.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 // Add services to the container.
 
+builder.Services.AddCors(options =>
+{options.AddPolicy(name: MyAllowSpecificOrigins, policy => { policy.WithOrigins("https://localho.st:3000").AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+});
+});
+
 builder.Services.AddControllers();
+builder.Services.AddTransient<IUserRepo, UserRepo>();
+builder.Services.AddTransient<IFestivalRepo, FestivalRepo>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -17,6 +28,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

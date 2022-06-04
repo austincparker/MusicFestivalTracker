@@ -17,7 +17,7 @@ namespace MusicFestivalTracker.Controllers
             _festivalRepo = festivalRepo;
         }
 
-        [HttpGet("{uid}")]
+        [HttpGet("uid/{uid}")]
         // GET: FestivalsController
         public ActionResult GetFestivalsByUid(int uid)
         {
