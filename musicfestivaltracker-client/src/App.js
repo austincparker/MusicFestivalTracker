@@ -36,18 +36,18 @@ function App() {
   //     }
   //   });
   // }, []);
-  // return (
-  //   <div>
-  //     {user ? (
-  //       <>
-  //         <Navbar />
-  //         <Routing uid={user.id} />
-  //       </>
-  //     ) : (
-  //       <Login user={user} />
-  //     )}
-  //   </div>
-  // );
+  return (
+    <div>
+      {/* {user ? (
+        <>
+          <Navbar />
+          <Routing uid={user.id} />
+        </>
+      ) : (
+        <Login user={user} />
+      )} */}
+    </div>
+  );
 }
 
 export default App;
