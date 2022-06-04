@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
@@ -14,7 +15,6 @@ function App() {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
-      console.log(authed)
       if (authed) {
         const userName = authed.displayName;
         const values = userName.split(" ");
@@ -43,7 +43,6 @@ function App() {
         <>
           <Navbar />
           <Routing uid={user.id} />
-          {/* <Routing uid={user.id} /> */}
         </>
       ) : (
         <SignInView user={user} />

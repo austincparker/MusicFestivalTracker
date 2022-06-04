@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import getFestivalsByUid from '../api/festivalData';
 
-function Home() {
+function Home({ uid }) {
   const [festivals, setFestivals] = useState([]);
   useEffect(() => {
-    // @ts-ignore
-    getFestivalsByUid(1).then((array) => {
-        setFestivals(array);
-    });
-}, [festivals]);
+    console.warn(uid);
+    getFestivalsByUid(1).then((festArray) => {
+        setFestivals(festArray);
+      });
+      console.warn(festivals)
+}, []);
   return (
       <>
       <div>Home</div>
-      {festivals[0].name}
+      <p>{uid}</p>
+      {festivals.map((fest) => (
+        <p key={fest.id}>{fest.name}</p>
+      ))}
+      
       </>
   )
 }
