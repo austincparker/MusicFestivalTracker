@@ -1,59 +1,53 @@
-import React, { Component } from 'react';
+// import React, { useState, useEffect } from "react";
+// import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+// import Routing from "./routes";
+// import Navbar from "./components/Navbar";
+import "./App.css";
+// import Login from "./views/Login";
 
-export default class App extends Component {
-    static displayName = App.name;
 
-    constructor(props) {
-        super(props);
-        this.state = { forecasts: [], loading: true };
-    }
 
-    componentDidMount() {
-        this.populateWeatherData();
-    }
+function App() {
+  // const [user, setUser] = useState(null);
 
-    static renderForecastsTable(forecasts) {
-        return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Temp. (C)</th>
-                        <th>Temp. (F)</th>
-                        <th>Summary</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {forecasts.map(forecast =>
-                        <tr key={forecast.date}>
-                            <td>{forecast.date}</td>
-                            <td>{forecast.temperatureC}</td>
-                            <td>{forecast.temperatureF}</td>
-                            <td>{forecast.summary}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
-        );
-    }
+  // useEffect(() => {
+  //   firebase.auth().onAuthStateChanged((authed) => {
+  //     console.log(authed)
+  //     if (authed) {
+  //       const userName = authed.displayName;
+  //       const values = userName.split(" ");
+  //       const fName = values[0];
+  //       const lName = values[1];
+  //       const userInfoObj = {
+  //         id: authed.uid,
+  //         firstName: fName,
+  //         lastName: lName,
+  //         email: authed.email,
+  //         isAdmin: false,
+  //       };
+  //       setUser(userInfoObj);
+       
 
-    render() {
-        let contents = this.state.loading
-            ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-            : App.renderForecastsTable(this.state.forecasts);
 
-        return (
-            <div>
-                <h1 id="tabelLabel" >Weather forecast</h1>
-                <p>This component demonstrates fetching data from the server.</p>
-                {contents}
-            </div>
-        );
-    }
-
-    async populateWeatherData() {
-        const response = await fetch('weatherforecast');
-        const data = await response.json();
-        this.setState({ forecasts: data, loading: false });
-    }
+      
+  //     } else if (user || user === null) {
+  //       setUser(false);
+  //     }
+  //   });
+  // }, []);
+  return (
+    <div>
+      {/* {user ? (
+        <>
+          <Navbar />
+          <Routing uid={user.id} />
+        </>
+      ) : (
+        <Login user={user} />
+      )} */}
+    </div>
+  );
 }
+
+export default App;
