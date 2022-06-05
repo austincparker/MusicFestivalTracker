@@ -1,6 +1,6 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import  createUser  from "../userData";
+import  {createUser } from "../userData";
 const signInUser = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase
@@ -12,18 +12,14 @@ const signInUser = () => {
       } = result;
       if (isNewUser) {
         firebase.auth().onAuthStateChanged((authed) => {
-          const userName = authed.displayName;
-          const values = userName.split(" ");
-          const fName = values[0];
-          const lName = values[1];
+          console.warn('new user');
           createUser({
-            id: authed.uid,
-            firstName: fName,
-            lastName: lName,
-            email: authed.email,
-            isAdmin: false,
+            fullName: authed.displayName,
+            firebaseKey: authed.uid
           });
         });
+      } else {
+        console.warn('there is already a user with that firebaseKey');
       }
     });
 };

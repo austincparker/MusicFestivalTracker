@@ -28,7 +28,8 @@ namespace MusicFestivalTracker.Repositories
                     using (SqlCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = @"
-                                            SELECT * FROM [User
+                                            SELECT Id, FullName, FirebaseKey
+                                            FROM [User]     
                                             WHERE Id = @id
                                             ";
                         cmd.Parameters.AddWithValue("id", id);
@@ -63,16 +64,16 @@ namespace MusicFestivalTracker.Repositories
                     using (SqlCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = @"
-                        INSERT INTO [User] (Id, FullName, FirebaseKey)
+                        INSERT INTO [User] (FullName, FirebaseKey)
                         OUTPUT INSERTED.ID
-                        VALUES (@id, @fullName, @firebaseKey);
+                        VALUES (@fullName, @firebaseKey);
                     ";
 
-                        cmd.Parameters.AddWithValue("@id", user.Id);
                         cmd.Parameters.AddWithValue("@fullName", user.FullName);
                         cmd.Parameters.AddWithValue("@firebaseKey", user.FirebaseKey);
 
-                        cmd.ExecuteNonQuery();
+                    int id = (int)cmd.ExecuteScalar();
+                    user.Id = id;
 
 
                     }

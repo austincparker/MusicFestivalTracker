@@ -8,7 +8,7 @@ const getFestivalsByUid = (userId) =>
           .get(`${baseURL}/festivals/uid/${userId}`)
           .then((response) => 
           {resolve(Object.values(response.data))
-          console.warn(response);
+          console.warn(response.data);
     })
           .catch(reject)});
 
