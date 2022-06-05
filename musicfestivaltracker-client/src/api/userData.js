@@ -2,6 +2,15 @@ import axios from 'axios';
 
 const baseURL = "https://localhost:7245/api";
 
+const getUserByFirebaseKey = (firebaseKey) => new Promise((resolve, reject) => {
+  axios
+          .get(`${baseURL}/users/${firebaseKey}`)
+          .then((response) => 
+          {resolve(Object.values(response.data))
+})
+.catch(reject);
+});
+
 const createUser = (newUser) =>
   new Promise((resolve, reject) => {
     axios
@@ -12,4 +21,4 @@ const createUser = (newUser) =>
       .catch(reject);
   });
 
-  export default createUser;
+  export { createUser, getUserByFirebaseKey };
