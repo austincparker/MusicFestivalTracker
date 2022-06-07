@@ -4,7 +4,7 @@ namespace MusicFestivalTracker.Repositories
 {
     public interface IUserRepo
     {
-        User GetUserById(int id);
+        User GetUserByUid(string firebaseKey);
         void CreateUser(User user);
     }
 }

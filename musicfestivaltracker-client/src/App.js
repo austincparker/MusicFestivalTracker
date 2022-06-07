@@ -6,7 +6,7 @@ import SignInView from "./views/SignInView";
 import Navbar from "./components/Navbar";
 import Routing from "./routes";
 
-
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [user, setUser] = useState(null);
