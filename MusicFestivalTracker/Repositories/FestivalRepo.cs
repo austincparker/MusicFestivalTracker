@@ -108,9 +108,9 @@ namespace MusicFestivalTracker.Repositories
                 {
                     cmd.CommandText = @"
                                       INSERT INTO Festival
-                                      (Id, [Name], Headliner, Location, [Date], Liked, Lacked, Camping, UserId, ImageUrl)
+                                      ([Name], Headliner, Location, [Date], Liked, Lacked, Camping, UserId, ImageUrl)
                                       OUTPUT INSERTED.ID
-                                      VALUES (@id, @name, @headliner, @location, @date, @liked, @lacked, @camping, @userId, @imageUrl)
+                                      VALUES (@name, @headliner, @location, @date, @liked, @lacked, @camping, @userId, @imageUrl);
                                       ";
 
                     cmd.Parameters.AddWithValue("@name", festival.Name);
@@ -120,6 +120,7 @@ namespace MusicFestivalTracker.Repositories
                     cmd.Parameters.AddWithValue("@liked", festival.Liked);
                     cmd.Parameters.AddWithValue("@lacked", festival.Lacked);
                     cmd.Parameters.AddWithValue("@camping", festival.Camping);
+                    cmd.Parameters.AddWithValue("@userId", festival.UserId);
                     cmd.Parameters.AddWithValue("@imageUrl", festival.ImageUrl);
 
                     int id = (int)cmd.ExecuteScalar();

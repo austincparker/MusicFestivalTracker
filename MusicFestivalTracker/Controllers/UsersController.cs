@@ -16,10 +16,10 @@ namespace MusicFestivalTracker.Controllers
             _userRepo = userRepository;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetUserById(int id)
+        [HttpGet("{firebaseKey}")]
+        public IActionResult GetUserByUid(string firebaseKey)
         {
-            User user = _userRepo.GetUserById(id);
+            User user = _userRepo.GetUserByUid(firebaseKey);
 
             if (user == null)
             {

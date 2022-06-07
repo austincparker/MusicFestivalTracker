@@ -2,12 +2,10 @@ import axios from 'axios';
 
 const baseURL = "https://localhost:7245/api";
 
-const getUserByFirebaseKey = (firebaseKey) => new Promise((resolve, reject) => {
+const getUserByUid = (uid) => new Promise((resolve, reject) => {
   axios
-          .get(`${baseURL}/users/${firebaseKey}`)
-          .then((response) => 
-          {resolve(Object.values(response.data))
-})
+          .get(`${baseURL}/users/${uid}`)
+          .then((response) => resolve(response.data))
 .catch(reject);
 });
 
@@ -21,4 +19,4 @@ const createUser = (newUser) =>
       .catch(reject);
   });
 
-  export { createUser, getUserByFirebaseKey };
+  export { createUser, getUserByUid };

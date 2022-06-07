@@ -20,7 +20,7 @@ namespace MusicFestivalTracker.Repositories
                 }
             }
 
-            public User GetUserById(int id)
+            public User GetUserByUid(string firebaseKey)
             {
                 using (SqlConnection conn = Connection)
                 {
@@ -30,9 +30,9 @@ namespace MusicFestivalTracker.Repositories
                         cmd.CommandText = @"
                                             SELECT Id, FullName, FirebaseKey
                                             FROM [User]     
-                                            WHERE Id = @id
+                                            WHERE FirebaseKey = @firebaseKey
                                             ";
-                        cmd.Parameters.AddWithValue("id", id);
+                        cmd.Parameters.AddWithValue("firebaseKey", firebaseKey);
 
                         SqlDataReader reader = cmd.ExecuteReader();
 
