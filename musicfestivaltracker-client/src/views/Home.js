@@ -4,8 +4,10 @@ import getFestivalsByUid from '../api/festivalData';
 import { getUserByUid } from '../api/userData';
 import FestivalCard from '../components/FestivalCard';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 function Home({ firebaseKey }) {
+  const navigate = useNavigate();
   const [user, setUser] = useState({});
   const [festivals, setFestivals] = useState([]);
 
@@ -22,6 +24,7 @@ function Home({ firebaseKey }) {
       <div>Home</div>
       <p>Welcome, {user.fullName}</p>
       <button
+        className="btn btn-danger"
         onClick={signOutUser}
         type='button'
         >Sign Out</button>
@@ -29,7 +32,11 @@ function Home({ firebaseKey }) {
       {festivals.map((fest) => (
        <FestivalCard festival={fest} key={fest.id}/>
       ))};
-      
+      <button
+      className="btn btn-success"
+      type="button"
+      onClick={() => navigate('/create')}
+      >Add Festival</button>
       </div>
   )
 }
