@@ -40,5 +40,13 @@ const updateFestival = (festObj) =>
       .catch(reject);
   });
 
+  const getSingleFestival = (id) =>
+  new Promise((resolve, reject) => {
+    axios
+      .get(`${baseURL}/festivals/${id}`)
+      .then((response) => resolve(response.data))
+      .catch(reject);
+  });
 
-    export { getFestivalsByUid, createFestival, updateFestival, deleteFestival };
+
+    export { getFestivalsByUid, createFestival, updateFestival, deleteFestival, getSingleFestival };
