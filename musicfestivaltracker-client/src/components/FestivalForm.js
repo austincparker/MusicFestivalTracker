@@ -71,6 +71,7 @@ function FestivalForm({ obj = {} }) {
         createFestival({
           ...formInput,
           userId: user.id,
+          camping: checked
         }).then(() => {
           resetForm();
           navigate(`/`);
@@ -169,7 +170,7 @@ function FestivalForm({ obj = {} }) {
             type="checkbox"
             className="form-check-input"
             checked={obj.camping}
-            onChange={() => handleCheck()}
+            onChange={(e) => handleCheck(e)}
             name="camping"
           />
         </div>
