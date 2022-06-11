@@ -167,10 +167,11 @@ namespace MusicFestivalTracker.Repositories
                                           Lacked = @lacked,
                                           Camping = @camping,
                                           UserId = @userId,
-                                          ImageUrl = @imageUrl,
+                                          ImageUrl = @imageUrl
                                       WHERE Id = @id
                                       ";
-
+                    cmd.Parameters.AddWithValue("@id", festival.Id);
+                    cmd.Parameters.AddWithValue("@userId", festival.UserId);
                     cmd.Parameters.AddWithValue("@name", festival.Name);
                     cmd.Parameters.AddWithValue("@headliner", festival.Headliner);
                     cmd.Parameters.AddWithValue("@location", festival.Location);

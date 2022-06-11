@@ -30,7 +30,7 @@ function Home({ firebaseKey }) {
         >Sign Out</button>
       <h3>Here are your festivals!!</h3>
       {festivals.map((fest) => (
-       <FestivalCard festival={fest} key={fest.id}/>
+       <FestivalCard user={user} festival={fest} setFestivals={setFestivals} key={fest.id}/>
       ))};
       <button
       className="btn btn-success"
