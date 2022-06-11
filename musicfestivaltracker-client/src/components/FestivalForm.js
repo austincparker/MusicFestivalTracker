@@ -30,6 +30,7 @@ function FestivalForm({ obj = {} }) {
         name: obj.name,
         userId: obj.userId,
         headliner: obj.headliner,
+        location: obj.location,
         date: obj.date,
         liked: obj.liked,
         lacked: obj.lacked,
@@ -63,8 +64,9 @@ function FestivalForm({ obj = {} }) {
     e.preventDefault();
 
     if (obj.id) {
+      console.log(formInput);
       updateFestival(formInput).then(() => {
-        navigate(`/festival/${formInput.id}`);
+        navigate(`/`);
       });
     } else {
       getUserByUid(uid).then((user) => {

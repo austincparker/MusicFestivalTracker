@@ -14,7 +14,7 @@ export default function Routing({ firebaseKey }){
             <Route 
             path="/create" element={<CreateFestival />}></Route>
             <Route
-            path="/edit" element={ <EditFesival />}></Route>
+            path="/edit/:key" element={ <EditFesival />}></Route>
             </Routes>
         </div>
     );
