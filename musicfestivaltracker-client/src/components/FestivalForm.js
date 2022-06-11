@@ -85,6 +85,11 @@ function FestivalForm({ obj = {} }) {
   return (
     <>
       <div>FestivalForm</div>
+        {(checked) ? 
+          <h4>TRUE</h4>
+         : 
+          <h4>FALSE</h4>
+}
       <form onSubmit={handleClick}>
         <div className="form-group">
           <label htmlFor="name">Festival Name</label>
@@ -171,8 +176,11 @@ function FestivalForm({ obj = {} }) {
           <input
             type="checkbox"
             className="form-check-input"
-            checked={obj.camping}
-            onChange={(e) => handleCheck(e)}
+            checked={checked}
+            onClick={(e) => handleCheck(e)}
+            onChange={(e) => {
+              handleCheck(e);
+            }}
             name="camping"
           />
         </div>
