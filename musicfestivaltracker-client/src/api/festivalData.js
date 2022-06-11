@@ -14,6 +14,7 @@ const getFestivalsByUid = (userId) =>
 
 const createFestival = (newFest) =>
 new Promise((resolve, reject) => {
+      console.warn(newFest);
   axios
     .post(`${baseURL}/festivals`, newFest)
     .then((response) => {
