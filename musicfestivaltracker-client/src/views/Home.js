@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { signOutUser } from '../api/auth/auth';
-import getFestivalsByUid from '../api/festivalData';
+import { getFestivalsByUid } from '../api/festivalData';
 import { getUserByUid } from '../api/userData';
 import FestivalCard from '../components/FestivalCard';
 import PropTypes from 'prop-types';
