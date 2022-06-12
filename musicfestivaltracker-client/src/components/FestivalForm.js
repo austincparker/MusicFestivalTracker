@@ -185,6 +185,19 @@ function FestivalForm({ obj = {} }) {
           />
         </div>
 
+        <div className="form-group">
+          <label htmlFor="imageUrl">Image Url</label>
+
+          <input
+            type="text"
+            className="form-control"
+            value={formInput.imageUrl || ""}
+            placeholder="Submit a photo!"
+            onChange={(e) => handleChange(e)}
+            name="imageUrl"
+          />
+        </div>
+
         <button type="submit" className="btn btn-primary">
           {obj.id ? "Update Festival" : "Add Festival!"}
         </button>
