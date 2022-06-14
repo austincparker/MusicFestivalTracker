@@ -25,10 +25,6 @@ function FestivalCard({ festival, setFestivals, user }) {
       <h2>{festival.headliner}</h2>
       <h4>{festival.location}</h4>
       <h5>{festival.date}</h5>
-      <p>What you liked: {festival.liked}</p>
-      <p>What you disliked: {festival.lacked}</p>
-      <p>Camping: {festival.camping ? 'Yes' : 'No'}</p>
-      <img width="200px" alt={festival.name} src={festival.imageUrl}></img>
 
 
 

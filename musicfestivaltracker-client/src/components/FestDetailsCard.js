@@ -34,7 +34,7 @@ function FestivalDetailsCard() {
       type="button"
       onClick={() => handleClick()}
       className="btn btn-light mx-2 my-2"
-      ></button>
+      >Back to Festivals</button>
       </div>
     </div>
   );
