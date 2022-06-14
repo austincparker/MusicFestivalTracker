@@ -4,6 +4,7 @@ import Home from '../views/Home';
 import PropTypes from 'prop-types';
 import CreateFestival from '../views/CreateFestival';
 import EditFesival from '../views/EditFesival';
+import FestivalDetails from '../views/FestivalDetails';
 
 export default function Routing({ firebaseKey }){
     return (
@@ -15,6 +16,8 @@ export default function Routing({ firebaseKey }){
             path="/create" element={<CreateFestival />}></Route>
             <Route
             path="/edit/:key" element={ <EditFesival />}></Route>
+            <Route
+            path="/details/:key" element={ <FestivalDetails />}></Route>
             </Routes>
         </div>
     );
